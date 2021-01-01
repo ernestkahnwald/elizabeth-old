@@ -1,24 +1,9 @@
 <template>
-  <div>
-    <h1>Обзор</h1>
-  </div>
+  <div>index</div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
-export default {
-  components: {},
-
-  computed: {
-    ...mapState({}),
-  },
-}
+export default {}
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  max-width: 1200px;
-}
-</style>
+<style lang="scss"></style>

@@ -1,0 +1,49 @@
+$font-path: '~assets/fonts/Nunito/';
+
+@font-face {
+  font: {
+    family: 'Nunito';
+    weight: 900;
+  }
+  src: url($font-path + 'Nunito-Black.ttf') format('opentype');
+}
+
+@font-face {
+  font: {
+    family: 'Nunito';
+    weight: 700;
+  }
+  src: url($font-path + 'Nunito-Bold.ttf') format('opentype');
+}
+
+@font-face {
+  font: {
+    family: 'Nunito';
+    weight: 500;
+  }
+  src: url($font-path + 'Nunito-SemiBold.ttf') format('opentype');
+}
+
+@font-face {
+  font: {
+    family: 'Nunito';
+    weight: 400;
+  }
+  src: url($font-path + 'Nunito-Regular.ttf') format('opentype');
+}
+
+@font-face {
+  font: {
+    family: 'Nunito';
+    weight: 300;
+  }
+  src: url($font-path + 'Nunito-Light.ttf') format('opentype');
+}
+
+@font-face {
+  font: {
+    family: 'Nunito';
+    weight: 100;
+  }
+  src: url($font-path + 'Nunito-ExtraLight.ttf') format('opentype');
+}
