@@ -2,16 +2,15 @@
   <header class="header">
     <div class="header__inner container">
       <div class="header__title">
-        <h2 class="header__title__inner">Операции</h2>
+        <h2 class="header__title__inner">
+          <slot name="title">Операции</slot>
+        </h2>
       </div>
       <div class="header__actions">
-        <div
-          class="header__actions__action header__actions__action_remind icon-button"
-          notifications="5"
-        ></div>
-        <div
-          class="header__actions__action header__actions__action_settings icon-button"
-        ></div>
+        <slot name="actions">
+          <div class="el-icon-bell" notifications="5"></div>
+          <div class="el-icon-setting"></div>
+        </slot>
       </div>
     </div>
   </header>
@@ -37,10 +36,13 @@ export default {
     display: flex;
     gap: 1.25rem;
 
-    &__action {
-      &_remind {
+    & > div {
+      &::before {
+        font-size: 1.5rem;
+      }
+
+      &[notifications] {
         position: relative;
-        background-image: url($images-source + 'nav/remind.svg');
 
         &::after {
           content: attr(notifications);
@@ -50,6 +52,7 @@ export default {
           height: 0.875rem;
           width: 0.875rem;
           position: absolute;
+          top: 0;
           right: 0;
           font-size: 0.625rem;
           line-height: 0.625rem;
@@ -57,10 +60,6 @@ export default {
           background-color: $color-bg-primary;
           border-radius: 50%;
         }
-      }
-
-      &_settings {
-        background-image: url($images-source + 'nav/settings.svg');
       }
     }
   }

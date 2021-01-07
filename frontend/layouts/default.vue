@@ -3,6 +3,7 @@
     <Header />
     <Nuxt />
     <Menu class="fixed_bottom" />
+    <v-dialog />
   </div>
 </template>
 

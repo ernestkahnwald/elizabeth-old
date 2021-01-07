@@ -3,7 +3,6 @@
 
 * {
   font-family: 'Nunito', Arial, Helvetica, sans-serif;
-  color: $color-text-secondary;
   letter-spacing: 0.0125rem;
 }
 
@@ -11,71 +10,40 @@ body {
   background-color: $color-bg-common;
 }
 
+p {
+  color: $color-text-secondary;
+}
+
+h2, h4, p {
+  margin-block: 0;
+}
+
+h2, h4 {
+  color: $color-text-primary;
+}
+
 h2 {
   font: {
     size: 1.5rem;
     weight: $fw-bold;
   }
-  color: $color-text-primary;
-  margin-block: 0;
 }
 
 h4 {
   font-size: 1.125rem;
-  color: $color-text-primary;
-  margin-block: 0;
 }
 
 .container {
   margin-inline: $container-indent;
 }
 
-.icon-button {
-  @extend %icon;
-}
-
-.button {
-  @extend %button;
-
-  // type
-  &_primary {
-    color: $color-fg-secondary;
-    background-color: $color-bg-primary;
-  }
-
-  &_secondary {
-    color: $color-fg-primary;
-    background-color: $color-bg-secondary;
-  }
-
-  &_not-selected, &_disabled {
-    color: $color-text-secondary;
-    background-color: initial;
-  }
-
-  &_iconed {
-    i {
-      @extend %icon;
-      margin-right: 1rem;
-    }
-  }
-
-  // size
-  &_small {
-    font: {
-      size: 1rem;
-      weight: $fw-medium;
-    }
-    padding-block: 0.625rem;
-  }
-}
-
-.icon {
-  &_filter {
-    background-image: url($images-source + 'filter.svg');
-  }
-
-  &_pink-card {
-    background-image: url($images-source + 'card_pink.svg');
+button {
+  &.el-button--primary {
+    display: block;
+    width: 100%;
+    padding-block: 0.8125rem;
+    box-shadow: 0 1rem 1rem -1rem $color-bg-primary;
+    border-radius: 0.625rem;
+    font-size: 1.25rem;
   }
 }

@@ -1,26 +1,28 @@
 <template>
   <section class="operations container">
     <div class="operations__filter">
-      <div
-        class="operations__filter__button button button_primary button_iconed"
+      <el-button
+        type="primary"
+        icon="el-icon-position"
+        class="operations__filter__button"
       >
-        <i class="icon_filter"></i>
         Фильтр
-      </div>
-      <div class="operations__filter__direction">
-        <div class="button button_small button_secondary button_iconed">
-          Прошедшие
-        </div>
-        <div
-          class="button button_small button_secondary button_not-selected button_iconed"
-        >
-          Запланированные
-        </div>
-      </div>
+      </el-button>
+
+      <el-radio-group
+        v-model="direction"
+        class="operations__filter__direction"
+        fill="#ffeaf0"
+        text-color="#FF316D"
+      >
+        <el-radio-button label="Прошедшие"></el-radio-button>
+        <el-radio-button label="Запланированные"></el-radio-button>
+      </el-radio-group>
+
       <div class="operations__filter__info">
-        <div class="operations__filter__text">
+        <p class="operations__filter__text">
           Операции за 11 декабря - 20 января
-        </div>
+        </p>
       </div>
     </div>
     <div class="operations__content">
@@ -37,19 +39,25 @@
         </div>
       </div>
     </div>
+    <div class="operations__actions">
+      <Action type="income" />
+    </div>
   </section>
 </template>
 
 <script>
+import Action from '~/components/blocks/Action'
 import Transaction from '~/components/blocks/Transaction'
 
 export default {
   components: {
+    Action,
     Transaction,
   },
 
   data() {
     return {
+      direction: 'Прошедшие',
       transactions: [
         {
           id: 1,
@@ -73,14 +81,21 @@ export default {
     flex-direction: column;
     row-gap: 1rem;
 
-    &__button {
-      padding-block: 0.8125rem;
-    }
-
     &__direction {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 1.25rem;
+
+      label {
+        border-radius: 0.3125rem;
+        overflow: hidden;
+
+        span {
+          display: block;
+          border: none !important;
+          font-weight: $fw-medium !important;
+        }
+      }
     }
 
     &__text {
@@ -103,6 +118,12 @@ export default {
       flex-direction: column;
       row-gap: 1.25rem;
     }
+  }
+
+  &__actions {
+    position: fixed;
+    right: $container-indent;
+    bottom: $menu-size + 1.875rem;
   }
 }
 </style>
