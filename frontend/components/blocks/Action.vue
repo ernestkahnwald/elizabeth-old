@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AddOperationPage from '~/pages/addOperation'
+import AddOperationPage from '~/pages/-addOperation'
 
 export default {
   props: {

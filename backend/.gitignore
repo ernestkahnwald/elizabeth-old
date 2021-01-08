@@ -106,3 +106,8 @@ media/
 *.pyc
 *.db
 *.pid
+
+/static
+
+# packages for admin frontend
+/node_modules

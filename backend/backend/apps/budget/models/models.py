@@ -5,34 +5,25 @@ from budget.models.mixins import AuthorMixin
 
 
 class Operation(AuthorMixin, models.Model):
-    name = models.CharField(
-        'название расчета',
-        max_length=100,
-        help_text=(
-            'вы можете указать свое название для расчета, либо просто укажите '
-            'категорию'
-        ),
-        blank=True,
-    )
-    size = models.DecimalField(
-        'размер расчета',
+    sum = models.DecimalField(
+        'сумма',
         max_digits=10,
         decimal_places=2,
         default=0,
     )
     type = models.IntegerField(
-        'тип расчета',
+        'тип',
         default=OperationType.EXPENSE,
         choices=OperationType.CHOICES,
     )
     created_at = models.DateTimeField(
-        'дата создания',
+        'дата проведения',
         auto_now_add=True,
     )
     kind = models.ForeignKey(
-        'budget.OperationKind',
+        'budget.Category',
         on_delete=models.SET_NULL,
-        verbose_name='вид расхода',
+        verbose_name="категория",
         blank=True, null=True,
     )
 
@@ -43,23 +34,31 @@ class Operation(AuthorMixin, models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        if all([self.name, self.size]):
-            return f'{self.name} {self.size}'
-        return super().__init__()
+        return f'{self.kind} {self.sum}' \
+            if all([self.kind, self.sum]) else super().__init__()
 
 
-class OperationKind(AuthorMixin, models.Model):
+class Category(AuthorMixin, models.Model):
     name = models.CharField(
         'название',
         max_length=100,
     )
+    parent = models.ForeignKey(
+        'self',
+        verbose_name='Родительская категория',
+        on_delete=models.SET_NULL,
+        blank=True, null=True,
+    )
+    icon = models.CharField(
+        'иконка',
+        max_length=100,
+        default="fas fa-mug-hot",
+    )
 
     class Meta:
-        verbose_name = 'вид операции'
-        verbose_name_plural = 'виды операций'
-        default_related_name = 'kinds'
+        verbose_name = 'категория'
+        verbose_name_plural = 'категории'
+        default_related_name = 'categories'
 
     def __str__(self):
-        if self.name:
-            return self.name
-        return super().__init__()
+        return self.name or super().__init__()

@@ -4,7 +4,7 @@ from budget.models import Operation
 
 
 class OperationSerializer(serializers.ModelSerializer):
-    type = serializers.SerializerMethodField(method_name='get_type_dict')
+    type = serializers.SerializerMethodField()
     kind = serializers.StringRelatedField()
 
     class Meta:
@@ -13,9 +13,9 @@ class OperationSerializer(serializers.ModelSerializer):
             'id', 'name', 'size', 'type', 'kind', 'created_at',
         )
 
-    def get_type_dict(self, obj):
+    def get_type(self, obj):
         return {
-            'value': obj.type,
             'label': obj.get_type_display(),
+            'value': obj.type,
         }
 

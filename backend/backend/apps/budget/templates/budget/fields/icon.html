@@ -1,0 +1,25 @@
+{% with name=widget.name %}
+    <div class="icon-field">
+        <div
+            class="icon-field__preview"
+            data-toggle="tooltip"
+            title="Предпросмотр иконки"
+        >
+            {% with value=widget.value|default_if_none:"fas fa-mug-hot" %}
+                <input
+                    type="text"
+                    class="icon-field__formfield"
+                    name="{{ name }}"
+                    value="{{ value }}">
+                <i id="icon-preview-{{ name }}" class="{{ value }}"></i>
+            {% endwith %}
+        </div>
+        <button
+            type="button"
+            id="icon-button-{{ name }}"
+            class="icon-field__button"
+            data-iconpicker-input="input[name={{ name }}]"
+            data-iconpicker-preview="#icon-preview-{{ name }}"
+        >Выбрать иконку</button>
+    </div>
+{% endwith %}

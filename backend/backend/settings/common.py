@@ -17,7 +17,8 @@ sys.path.insert(1, path('.'))
 DEBUG = True
 ALLOWED_HOSTS = [
     '192.168.0.%s' % i for i in range(255)
-]
+] + ['localhost', '127.0.0.1']
+INTERNAL_IPS = ALLOWED_HOSTS
 ROOT_URLCONF = 'backend.urls'
 WSGI_APPLICATION = 'backend.wsgi.application'
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'django_extensions',
+    'debug_toolbar',
     'corsheaders',
 
     'budget',
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
 # -----------------------------------------------------------------------------
@@ -108,11 +111,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# INTERNATIONALIZATION --------------------------------------------------------
-STATIC_URL = '/static/'
+# STATIC AND MEDIA FILES ------------------------------------------------------
 STATICFILES_DIRS = [
     path('static'),
+    os.path.join(os.path.dirname(BASE_DIR), 'node_modules'),
 ]
+
+STATIC_URL = '/static/'
+STATIC_ROOT = path('../../static')
 # -----------------------------------------------------------------------------
 
 
