@@ -1,23 +1,23 @@
 export const endpoint = 'operations/'
 
-export default (http, nuxtError) => ({
+export default (http) => ({
   list() {
-    return http.$get(endpoint)
+    return http.list(endpoint)
   },
 
   create(data) {
-    return http.$post(endpoint, data)
+    return http.create(endpoint, data)
   },
 
   get(id) {
-    return http.$get(`${endpoint}${id}/`)
+    return http.get(`${endpoint}${id}/`)
   },
 
   update(id, data) {
-    return http.$patch(`${endpoint}${id}/`, data)
+    return http.update(`${endpoint}${id}/`, data)
   },
 
   delete(id) {
-    return http.$delete(`${endpoint}${id}/`)
+    return http.delete(`${endpoint}${id}/`)
   },
 })
