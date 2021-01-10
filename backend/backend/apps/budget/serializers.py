@@ -10,7 +10,7 @@ class OperationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Operation
         fields = (
-            'id', 'name', 'size', 'type', 'kind', 'created_at',
+            'id', 'sum', 'type', 'kind', 'created_at',
         )
 
     def get_type(self, obj):

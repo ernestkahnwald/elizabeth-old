@@ -55,20 +55,17 @@ export default {
     Transaction,
   },
 
+  async asyncData({ $api }) {
+    const transactions = (await $api.operations.list()).results
+    return {
+      transactions,
+    }
+  },
+
   data() {
     return {
       direction: 'Прошедшие',
-      transactions: [
-        {
-          id: 1,
-        },
-        {
-          id: 2,
-        },
-        {
-          id: 3,
-        },
-      ],
+      transactions: [],
     }
   },
 }

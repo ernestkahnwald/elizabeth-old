@@ -111,3 +111,6 @@ media/
 
 # packages for admin frontend
 /node_modules
+
+# local files
+**local.py

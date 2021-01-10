@@ -15,9 +15,7 @@ sys.path.insert(1, path('.'))
 
 
 DEBUG = True
-ALLOWED_HOSTS = [
-    '192.168.0.%s' % i for i in range(255)
-] + ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = ALLOWED_HOSTS
 ROOT_URLCONF = 'backend.urls'
 WSGI_APPLICATION = 'backend.wsgi.application'
@@ -46,6 +44,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,15 +54,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
 
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 # -----------------------------------------------------------------------------
 
 
 # CORS =====-------------------------------------------------------------------
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080",
-]
+CORS_ALLOW_ALL_ORIGINS = True
 # -----------------------------------------------------------------------------
 
 
